@@ -1,4 +1,4 @@
-# Read Me!  Restful-API-Express-Coursework
+# Restful-API-Express-Coursework
 Repository for uploading files that I've worked on through the course I'm doing. 
 
 At the moment it is just an introduction to CRUD I've been with.  I got most of it working (I think)
