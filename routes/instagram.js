@@ -78,7 +78,7 @@ router.post('/', (req, res) => {
 		photo: req.body.photo,
 		likes: req.body.likes
     };
-    instagram .push(newUser);
+    instagram.push(newUser);
     res.send(newUser);
 })
 
