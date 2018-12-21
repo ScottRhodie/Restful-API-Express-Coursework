@@ -3,7 +3,7 @@ const router = express.Router();
 
 const instagram = require('../mock-database');
 
-const validateInfo = require('../helpers/validator.js')
+const validator = require('../helpers/validator.js')
 const helpers = require('../helpers');
 
 
@@ -30,7 +30,7 @@ router.put('/:id', (req, res) => {
 	if (!putUser) return res.status(404).send('Unable to edit user.  The ID was not found.');
 	const {
 		error
-	} = validateInfo(req.body);
+	} = validator.validateUser(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 
 	putUser.name = req.body.name;
@@ -42,7 +42,7 @@ router.put('/:id', (req, res) => {
 router.post('/', (req, res) => {
 	const {
 		error
-	} = validateInfo(req.body); // result.error
+	} = validator.validateUser(req.body); // result.error
 	if (error) return res.status(400).send(error.details[0].message);
 
 	const newUser = {

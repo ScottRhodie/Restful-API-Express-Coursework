@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-function validateInfo(inVal) {
+function validateUser(inVal) {
 	const schema = {
 		name: Joi.string()
 			.min(2)
@@ -16,4 +16,6 @@ function validateInfo(inVal) {
 	return Joi.validate(inVal, schema);
 }
 
-module.exports = validateInfo
+module.exports = {
+    validateUser
+}
