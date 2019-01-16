@@ -23,7 +23,7 @@ mongoose.connect(dbConfig.url, {
 
 // Showing the homepage to test connection
 app.get('/', (req, res) => {
-    res.send("Welcome to Instagram! <br><br> Check /api/v1/instagram/:id to view users by ID <br> Check /api/v1/instagram/user/:name to view users by name");
+    res.send("Welcome to Instagram! <br> Check /api/v1/users/[userId] to view users by ID.");
 });
 
 // All the routes
