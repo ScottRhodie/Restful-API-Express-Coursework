@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     const user = new User({
         name: req.body.name,
         photo: req.body.photo || "User has not uploaded a photo",
-        likes: req.body.likes || "User has no likes yet..."
+        likes: req.body.likes || 0
     });
 
     // Save user in the database
