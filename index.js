@@ -1,7 +1,6 @@
 // Call expressJS and Joi Validation
 const express = require('express');
 const app = express();
-const Joi = require('joi');
 
 // Use body parsing
 app.use(express.json());
