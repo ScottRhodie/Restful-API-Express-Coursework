@@ -1,4 +1,4 @@
-// Call expressJS and Joi Validation
+// Call expressJS
 const express = require('express');
 const app = express();
 
