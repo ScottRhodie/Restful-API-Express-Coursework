@@ -1,18 +1,30 @@
-module.exports = (app) => {
-    const user = require('../controllers/instagram.controller.js');
+const express = require('express');
+const app = express();
+app.use(express.json());
 
-    // Create a new user
-    app.post('/api/v1/users/', user.create);
+module.exports = (app, controller) => {
+    app.get('/', (req, res) => {
+        res.send("Welcome to Instagram! <br> Check /api/v1/users/[userId] to view users by ID.");
+    });
 
-    // Retrieve all user
-    app.get('/api/v1/users/', user.findAll);
+    app.post('/api/v1/users/', (req, res) => {
+        return controller.createUser(req.body)
+        .then(data => {
+            res.send(data);
+        }).catch(err => {
+            res.status(err.errorCode || 500).send({
+                message: err.message || "Some error occurred while creating the user."
+            });
+        });
+    });
 
-    // Retrieve a single user with idnumber
-    app.get('/api/v1/users/:userId', user.findOne);
+    app.get('/api/v1/users/', controller.getAllUsers);
 
-    // Update a user with idnumber
-    app.put('/api/v1/users/:userId', user.update);
+    app.get('/api/v1/users/:userId', controller.getUserById);
 
-    // Delete a user with idnumber
-    app.delete('/api/v1/users/:userId', user.delete);
+    app.put('/api/v1/users/:userId', controller.updateUser);
+
+    app.delete('/api/v1/users/:userId', controller.deleteUser);
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => console.log(`Instagram is live and listening on port ${port} :)`));
 }

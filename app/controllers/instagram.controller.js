@@ -1,31 +1,20 @@
 const User = require('../models/instagram.model.js');
 
-// Create and Save a new user
-exports.create = (req, res) => {
-    // Validate request
-    if (!req.body.name) {
-        return res.status(400).send({
-            message: "Name can not be empty"
+exports.initController = (store) => {
+    exports.createUser = (userInput) => {
+        const isInvalid = (user) => !user.name;
+        const ensureUserData = new User({
+            name: userInput.name,
+            photo: userInput.photo || "User has not uploaded a photo",
+            likes: userInput.likes || 0
         });
-    }
 
-    // Create a new user
-    const user = new User({
-        name: req.body.name,
-        photo: req.body.photo || "User has not uploaded a photo",
-        likes: req.body.likes || 0
-    });
+        if (isInvalid(userInput)) throw new Error({errorCode: 400, message: "Name can not be empty"});
+        const user = ensureUserData(userInput);
+        return store.saveUser(user);
+    };
 
-    // Save user in the database
-    user.save()
-        .then(data => {
-            res.send(data);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the user."
-            });
-        });
-};
+}
 
 
 // Retrieve and return all users from the database.
