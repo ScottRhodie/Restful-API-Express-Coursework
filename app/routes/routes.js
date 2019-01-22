@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const user = require('../controllers/instagram.controller.js');
+    const user = require('../controllers/controller.js');
 
     // Create a new user
     app.post('/api/v1/users/', user.create);

@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 // All the routes
-require('./app/routes/instagram.routes.js')(app);
+require('./app/routes/routes.js')(app);
 
 // Create a server
 const port = process.env.PORT || 3000;
