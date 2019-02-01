@@ -6,7 +6,7 @@ module.exports = ({
 }) => {
     return mongoose.connect(url, {
         useNewUrlParser: true
-    }).then((data) => {
+    }).then(() => {
         return {
             saveUser: (user) => {
                 console.log("A new user has been created.")
