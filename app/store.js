@@ -9,8 +9,11 @@ module.exports = ({
     }).then(() => {
         return {
             saveUser: (user) => {
-                console.log("A new user has been created.")
                 return User.create(user)
+                    .then((response) => {
+                        console.log("A new user has been created."); // now this is true since we are in the "then" part
+                        return response; // always do that in case the client calling this function is interested in the result from .create
+                    })
             }
         }
     }).catch(err => {
