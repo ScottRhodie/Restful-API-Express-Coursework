@@ -20,7 +20,19 @@ module.exports = (controller) => {
                         message: err.message || "Some error occurred while creating the user."
                     });
                 });
-        });
+        })
+
+
+        app.get('/api/v1/users/', (req, res) => {
+            return controller.findAllUsers(req)
+                .then(data => {
+                    res.send(data)
+                }).catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Unable to rerieve users"
+                    })
+                })
+        })
 
         const port = process.env.PORT || 3000;
         app.listen(port, () => console.log(`Instagram is live and listening on port ${port} :)`));

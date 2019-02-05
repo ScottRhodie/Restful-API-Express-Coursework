@@ -1,10 +1,10 @@
-const dbConfig = require('./config/database.config');
-const initStore = require('./app/store');
-const initController = require('./app/controller');
-const initRouter = require('./app/routes');
+const dbConfig = require("./config/database.config");
+const initStore = require("./app/store");
+const initController = require("./app/controller");
+const initRouter = require("./app/routes");
 
 initStore(dbConfig)
-    .then((store) => {
+    .then(store => {
         const controller = initController(store);
         initRouter(controller);
     })
