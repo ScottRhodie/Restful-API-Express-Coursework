@@ -8,8 +8,13 @@ module.exports = store => {
     return store.findAllUsers(Users)
   }
 
+  const findSingleUser = userId => {
+    return store.findSingleUser(userId)
+  }
+
   return {
     createUser,
-    findAllUsers
+    findAllUsers,
+    findSingleUser
   };
 };

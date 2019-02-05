@@ -9,7 +9,6 @@ module.exports = ({
     }).then(() => {
         return {
 
-
             saveUser: (user) => {
                 return User.create(user)
                     .then((response) => {
@@ -20,13 +19,19 @@ module.exports = ({
 
             findAllUsers: () => {
                 return User.find()
-                    .then((responce) => {
+                    .then((response) => {
                         console.log("Listing all users now...");
-                        return responce;
+                        return response;
+                    })
+            },
+
+            findSingleUser: (req, res) => {
+                return User.findById(req.params.userId)
+                    .then((response) => {
+                        console.log("Now displaying info for user with ID : " + req.params.userId);
+                        return response
                     })
             }
-
-
 
         }
     }).catch(err => {
