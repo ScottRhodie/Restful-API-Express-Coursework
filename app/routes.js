@@ -27,14 +27,6 @@ module.exports = controller => {
                 });
         });
 
-        // current issue - Seems to work fine, however if you use correct amount
-        // of characters in the ID, but use one that doesn't exist, it throws an error
-        // in postman, but says its displaying the user in the console....
-        // putting this to the branch before editting.
-
-
-        // working id : 5c5985939aea0d11be38b1e0
-
         app.get('/api/v1/users/:userId', (req, res) => {
             return controller.findSingleUser(req)
                 .then(data => {
@@ -54,11 +46,6 @@ module.exports = controller => {
                     }
                 })
         })
-
-
-
-
-
 
         app.post("/api/v1/users/", (req, res) => {
             return controller
