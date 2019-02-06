@@ -33,27 +33,28 @@ module.exports = controller => {
         // putting this to the branch before editting.
 
 
+        // working id : 5c5985939aea0d11be38b1e0
+
         app.get('/api/v1/users/:userId', (req, res) => {
             return controller.findSingleUser(req)
                 .then(data => {
                     if (!data) {
                         return res.status(500).send({
-                            message: "User not found with that ID"
+                            message: "There is no user with the ID of : " + req.params.userId
                         })
+                    } else {
+                        console.log("Now displaying info for user : " + req.params.userId)
                     }
                     res.send(data)
                 }).catch(err => {
                     if (err.kind == 'ObjectId') {
                         return res.status(404).send({
-                            message: "User not found with ID " + req.params.userId
+                            error: "The ID entered does not match the applications ID format. Please try entering a valid ID."
                         });
                     }
-                    // do we need this return part?  worked when removed.
-                    return res.status(500).send({
-                        message: "Error retrieving user with id " + req.params.userId
-                    })
                 })
         })
+
 
 
 

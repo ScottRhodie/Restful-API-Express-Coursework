@@ -27,10 +27,6 @@ module.exports = ({
 
             findSingleUser: (req, res) => {
                 return User.findById(req.params.userId)
-                    .then((response) => {
-                        console.log("Now displaying info for user with ID : " + req.params.userId);
-                        return response
-                    })
             }
 
         }
