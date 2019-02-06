@@ -8,13 +8,26 @@ module.exports = ({
         useNewUrlParser: true
     }).then(() => {
         return {
+
+
             saveUser: (user) => {
                 return User.create(user)
                     .then((response) => {
-                        console.log("A new user has been created."); // now this is true since we are in the "then" part
-                        return response; // always do that in case the client calling this function is interested in the result from .create
+                        console.log("A new user has been created.");
+                        return response;
+                    })
+            },
+
+            findAllUsers: () => {
+                return User.find()
+                    .then((responce) => {
+                        console.log("Listing all users now...");
+                        return responce;
                     })
             }
+
+
+
         }
     }).catch(err => {
         console.log('Could not connect to the database. Exiting now...', err);

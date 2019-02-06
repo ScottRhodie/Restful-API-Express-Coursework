@@ -12,6 +12,7 @@
 	"dependencies": {
 		"express": "^4.16.4",
 		"joi": "^14.3.0",
+		"madge": "^3.4.3",
 		"mongoose": "^5.4.4"
 	}
 }
