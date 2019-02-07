@@ -41,7 +41,7 @@ module.exports = controller => {
                 }).catch(err => {
                     if (err.kind == 'ObjectId') {
                         return res.status(404).send({
-                            error: "The ID entered does not match the applications ID format. Please try entering a valid ID."
+                            error: "The ID entered does not match a valid user ID format. Please try entering a valid user ID."
                         });
                     }
                 })
