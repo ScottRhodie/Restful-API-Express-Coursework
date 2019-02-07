@@ -35,7 +35,7 @@ module.exports = controller => {
                             message: "There is no user with the ID of : " + req.params.userId
                         })
                     } else {
-                        console.log("Now displaying info for user : " + req.params.userId)
+                        console.log("Now displaying the info for the user with ID :" + req.params.userId)
                     }
                     res.send(data)
                 }).catch(err => {
