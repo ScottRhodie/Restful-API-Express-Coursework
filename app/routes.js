@@ -27,8 +27,6 @@ module.exports = controller => {
                 });
         });
 
-
-
         app.post("/api/v1/users/", (req, res) => {
             return controller
                 .createUser(req.body)
@@ -68,18 +66,22 @@ module.exports = controller => {
         app.put('/api/v1/users/:userId', (req, res) => {
             return controller.findUserByIdAndUpdate(req)
                 .then(data => {
+                    if (!data) {
+                        return res.status(500).send({
+                            message: "There is no user with the ID of : " + req.params.userId
+                        })
+                    } else {
+                        console.log("Information for userID : " + req.params.userId + " has been editted.");
+                    }
                     res.send(data)
                 }).catch(err => {
                     if (err) {
                         return res.status(404).send({
-                            err
+                            error: "There is no user with the ID of : " + req.params.userId
                         });
                     }
                 })
         })
-
-
-
 
         const port = process.env.PORT || 3000;
         app.listen(port, () =>
