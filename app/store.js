@@ -5,7 +5,8 @@ module.exports = ({
     url
 }) => {
     return mongoose.connect(url, {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useFindAndModify: false
     }).then(() => {
         return {
 
