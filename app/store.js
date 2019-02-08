@@ -27,6 +27,16 @@ module.exports = ({
 
             findSingleUser: (req, res) => {
                 return User.findById(req.params.userId)
+            },
+
+            findUserByIdAndUpdate: (req) => {
+                return User.findByIdAndUpdate(req.params.userId, {
+                    name: req.body.name,
+                    photo: req.body.photo,
+                    likes: req.body.likes
+                }, {
+                    new: true
+                })
             }
 
         }

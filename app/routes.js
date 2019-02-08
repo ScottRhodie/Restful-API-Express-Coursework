@@ -27,6 +27,21 @@ module.exports = controller => {
                 });
         });
 
+
+
+        app.post("/api/v1/users/", (req, res) => {
+            return controller
+                .createUser(req.body)
+                .then(data => {
+                    res.send(data);
+                })
+                .catch(err => {
+                    res.status(err.errorCode || 500).send({
+                        message: err.message || "Some error occurred while creating the user."
+                    });
+                });
+        });
+
         app.get('/api/v1/users/:userId', (req, res) => {
             return controller.findSingleUser(req)
                 .then(data => {
@@ -47,18 +62,24 @@ module.exports = controller => {
                 })
         })
 
-        app.post("/api/v1/users/", (req, res) => {
-            return controller
-                .createUser(req.body)
+
+
+
+        app.put('/api/v1/users/:userId', (req, res) => {
+            return controller.findUserByIdAndUpdate(req)
                 .then(data => {
-                    res.send(data);
+                    res.send(data)
+                }).catch(err => {
+                    if (err) {
+                        return res.status(404).send({
+                            err
+                        });
+                    }
                 })
-                .catch(err => {
-                    res.status(err.errorCode || 500).send({
-                        message: err.message || "Some error occurred while creating the user."
-                    });
-                });
-        });
+        })
+
+
+
 
         const port = process.env.PORT || 3000;
         app.listen(port, () =>

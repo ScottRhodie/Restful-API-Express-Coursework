@@ -12,9 +12,14 @@ module.exports = store => {
     return store.findSingleUser(userId)
   }
 
+  const findUserByIdAndUpdate = userId => {
+    return store.findUserByIdAndUpdate(userId)
+  }
+
   return {
     createUser,
     findAllUsers,
-    findSingleUser
+    findSingleUser,
+    findUserByIdAndUpdate
   };
 };
