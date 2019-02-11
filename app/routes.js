@@ -8,11 +8,13 @@ module.exports = controller => {
     const setup = app => {
         app.use(express.json());
 
+
         app.get("/", (req, res) => {
             res.send(
                 "Welcome to Instagram! <br> Check /api/v1/users/[userId] to view users by ID."
             );
         });
+
 
         app.get("/api/v1/users/", (req, res) => {
             return controller
@@ -27,6 +29,7 @@ module.exports = controller => {
                 });
         });
 
+
         app.post("/api/v1/users/", (req, res) => {
             return controller
                 .createUser(req.body)
@@ -39,6 +42,7 @@ module.exports = controller => {
                     });
                 });
         });
+
 
         app.get('/api/v1/users/:userId', (req, res) => {
             return controller.findSingleUser(req)
@@ -61,17 +65,15 @@ module.exports = controller => {
         })
 
 
-
-
         app.put('/api/v1/users/:userId', (req, res) => {
-            return controller.findUserByIdAndDelete(req)
+            return controller.findUserByIdAndUpdate(req)
                 .then(data => {
                     if (!data) {
                         return res.status(500).send({
                             message: "There is no user with the ID of : " + req.params.userId
                         })
                     } else {
-                        console.log("Information for userID : " + req.params.userId + " has been editted.");
+                        console.log("Information for userID : " + req.params.userId + " has been edited.");
                     }
                     res.send(data)
                 }).catch(err => {
@@ -83,8 +85,9 @@ module.exports = controller => {
                 })
         })
 
+
         app.delete('/api/v1/users/:userId', (req, res) => {
-            return controller.findByIdAndRemove(req)
+            return controller.findUserByIdAndDelete(req)
                 .then(data => {
                     if (!data) {
                         return res.status(500).send({
@@ -103,11 +106,13 @@ module.exports = controller => {
                 })
         })
 
+
         const port = process.env.PORT || 3000;
         app.listen(port, () =>
             console.log(`Instagram is live and listening on port ${port} :)`)
         );
     };
+
 
     const app = createApp();
     setup(app);

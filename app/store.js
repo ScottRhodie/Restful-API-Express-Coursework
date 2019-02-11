@@ -18,6 +18,7 @@ module.exports = ({
                     })
             },
 
+
             findAllUsers: () => {
                 return User.find()
                     .then((response) => {
@@ -26,13 +27,11 @@ module.exports = ({
                     })
             },
 
-            findSingleUser: (req, res) => {
+
+            findSingleUser: (req) => {
                 return User.findById(req.params.userId)
             },
 
-            findUserByIdAndDelete: (req) => {
-                return User.findByIdAndRemove(req.params.userId)
-            },
 
             findUserByIdAndUpdate: (req) => {
                 return User.findByIdAndUpdate(req.params.userId, {
@@ -44,6 +43,10 @@ module.exports = ({
                 })
             },
 
+
+            findUserByIdAndDelete: (req) => {
+                return User.findByIdAndRemove(req.params.userId)
+            }
         }
     }).catch(err => {
         console.log('Could not connect to the database. Exiting now...', err);
