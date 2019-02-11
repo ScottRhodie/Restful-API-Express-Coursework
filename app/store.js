@@ -30,6 +30,10 @@ module.exports = ({
                 return User.findById(req.params.userId)
             },
 
+            findUserByIdAndDelete: (req) => {
+                return User.findByIdAndRemove(req.params.userId)
+            },
+
             findUserByIdAndUpdate: (req) => {
                 return User.findByIdAndUpdate(req.params.userId, {
                     name: req.body.name,
@@ -38,7 +42,7 @@ module.exports = ({
                 }, {
                     new: true
                 })
-            }
+            },
 
         }
     }).catch(err => {

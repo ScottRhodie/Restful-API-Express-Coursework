@@ -16,10 +16,15 @@ module.exports = store => {
     return store.findUserByIdAndUpdate(userId)
   }
 
+  const findUserByIdAndDelete = userId => {
+    return store.findUserByIdAndDelete(userId)
+  }
+
   return {
     createUser,
     findAllUsers,
     findSingleUser,
-    findUserByIdAndUpdate
+    findUserByIdAndUpdate,
+    findUserByIdAndDelete
   };
 };

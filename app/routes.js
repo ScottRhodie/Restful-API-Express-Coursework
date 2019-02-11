@@ -64,7 +64,7 @@ module.exports = controller => {
 
 
         app.put('/api/v1/users/:userId', (req, res) => {
-            return controller.findUserByIdAndUpdate(req)
+            return controller.findUserByIdAndDelete(req)
                 .then(data => {
                     if (!data) {
                         return res.status(500).send({
@@ -72,6 +72,26 @@ module.exports = controller => {
                         })
                     } else {
                         console.log("Information for userID : " + req.params.userId + " has been editted.");
+                    }
+                    res.send(data)
+                }).catch(err => {
+                    if (err) {
+                        return res.status(404).send({
+                            error: "There is no user with the ID of : " + req.params.userId
+                        });
+                    }
+                })
+        })
+
+        app.delete('/api/v1/users/:userId', (req, res) => {
+            return controller.findByIdAndRemove(req)
+                .then(data => {
+                    if (!data) {
+                        return res.status(500).send({
+                            message: "There is no user with the ID of : " + req.params.userId
+                        })
+                    } else {
+                        console.log("Information for userID : " + req.params.userId + " has been deleted.");
                     }
                     res.send(data)
                 }).catch(err => {
