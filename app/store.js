@@ -28,24 +28,24 @@ module.exports = ({
             },
 
 
-            findUser: (req) => {
-                return User.findById(req.params.userId)
+            findUser: (userId) => {
+                return User.findById(userId.params.userId)
             },
 
 
-            updateUser: (req) => {
-                return User.findByIdAndUpdate(req.params.userId, {
-                    name: req.body.name,
-                    photo: req.body.photo,
-                    likes: req.body.likes
+            updateUser: (userId) => {
+                return User.findByIdAndUpdate(userId.params.userId, {
+                    name: userId.body.name,
+                    photo: userId.body.photo,
+                    likes: userId.body.likes
                 }, {
                     new: true
                 })
             },
 
 
-            deleteUserById: (req) => {
-                return User.findByIdAndRemove(req.params.userId)
+            deleteUserById: (userId) => {
+                return User.findByIdAndRemove(userId.params.userId)
             }
         }
     }).catch(err => {
