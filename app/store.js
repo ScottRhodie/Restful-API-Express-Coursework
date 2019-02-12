@@ -36,7 +36,9 @@ module.exports = ({
             updateUser: (userId) => {
                 return User.findByIdAndUpdate(userId.params.userId, {
                     name: userId.body.name,
+                    avatar: userId.body.avatar,
                     photo: userId.body.photo,
+                    photoCaption: userId.body.photoCaption,
                     likes: userId.body.likes
                 }, {
                     new: true

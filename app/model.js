@@ -5,7 +5,15 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    avatar: {
+        type: String,
+        required: true,
+    },
     photo: {
+        type: String,
+        required: true,
+    },
+    photoCaption: {
         type: String,
         required: true,
     },
