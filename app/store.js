@@ -5,10 +5,10 @@ module.exports = ({
     url
 }) => {
     return mongoose.connect(url, {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useFindAndModify: false
     }).then(() => {
         return {
-
 
             saveUser: (user) => {
                 return User.create(user)
@@ -18,16 +18,35 @@ module.exports = ({
                     })
             },
 
-            findAllUsers: () => {
+
+            getAllUsers: () => {
                 return User.find()
-                    .then((responce) => {
+                    .then((response) => {
                         console.log("Listing all users now...");
-                        return responce;
+                        return response;
                     })
+            },
+
+
+            findUser: (userId) => {
+                return User.findById(userId.params.userId)
+            },
+
+
+            updateUser: (userId) => {
+                return User.findByIdAndUpdate(userId.params.userId, {
+                    name: userId.body.name,
+                    photo: userId.body.photo,
+                    likes: userId.body.likes
+                }, {
+                    new: true
+                })
+            },
+
+
+            deleteUserById: (userId) => {
+                return User.findByIdAndRemove(userId.params.userId)
             }
-
-
-
         }
     }).catch(err => {
         console.log('Could not connect to the database. Exiting now...', err);

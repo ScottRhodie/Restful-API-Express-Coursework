@@ -4,12 +4,31 @@ module.exports = store => {
     return store.saveUser(user);
   };
 
-  const findAllUsers = Users => {
-    return store.findAllUsers(Users)
+
+  const getAllUsers = Users => {
+    return store.getAllUsers(Users)
+  }
+
+
+  const findUser = userId => {
+    return store.findUser(userId)
+  }
+
+
+  const updateUser = userId => {
+    return store.updateUser(userId)
+  }
+
+
+  const deleteUserById = userId => {
+    return store.deleteUserById(userId)
   }
 
   return {
     createUser,
-    findAllUsers
+    getAllUsers,
+    findUser,
+    updateUser,
+    deleteUserById
   };
 };
