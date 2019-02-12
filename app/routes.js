@@ -18,7 +18,7 @@ module.exports = controller => {
 
         app.get("/api/v1/users/", (req, res) => {
             return controller
-                .findAllUsers(req)
+                .getAllUsers(req)
                 .then(data => {
                     res.send(data);
                 })
@@ -45,7 +45,7 @@ module.exports = controller => {
 
 
         app.get('/api/v1/users/:userId', (req, res) => {
-            return controller.findSingleUser(req)
+            return controller.findUser(req)
                 .then(data => {
                     if (!data) {
                         return res.status(500).send({
@@ -66,7 +66,7 @@ module.exports = controller => {
 
 
         app.put('/api/v1/users/:userId', (req, res) => {
-            return controller.findUserByIdAndUpdate(req)
+            return controller.updateUser(req)
                 .then(data => {
                     if (!data) {
                         return res.status(500).send({
@@ -87,7 +87,7 @@ module.exports = controller => {
 
 
         app.delete('/api/v1/users/:userId', (req, res) => {
-            return controller.findUserByIdAndDelete(req)
+            return controller.deleteUserById(req)
                 .then(data => {
                     if (!data) {
                         return res.status(500).send({

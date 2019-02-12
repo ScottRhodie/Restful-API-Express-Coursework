@@ -5,30 +5,30 @@ module.exports = store => {
   };
 
 
-  const findAllUsers = Users => {
-    return store.findAllUsers(Users)
+  const getAllUsers = Users => {
+    return store.getAllUsers(Users)
   }
 
 
-  const findSingleUser = userId => {
-    return store.findSingleUser(userId)
+  const findUser = userId => {
+    return store.findUser(userId)
   }
 
 
-  const findUserByIdAndUpdate = userId => {
-    return store.findUserByIdAndUpdate(userId)
+  const updateUser = userId => {
+    return store.updateUser(userId)
   }
 
 
-  const findUserByIdAndDelete = userId => {
-    return store.findUserByIdAndDelete(userId)
+  const deleteUserById = userId => {
+    return store.deleteUserById(userId)
   }
 
   return {
     createUser,
-    findAllUsers,
-    findSingleUser,
-    findUserByIdAndUpdate,
-    findUserByIdAndDelete
+    getAllUsers,
+    findUser,
+    updateUser,
+    deleteUserById
   };
 };

@@ -19,7 +19,7 @@ module.exports = ({
             },
 
 
-            findAllUsers: () => {
+            getAllUsers: () => {
                 return User.find()
                     .then((response) => {
                         console.log("Listing all users now...");
@@ -28,12 +28,12 @@ module.exports = ({
             },
 
 
-            findSingleUser: (req) => {
+            findUser: (req) => {
                 return User.findById(req.params.userId)
             },
 
 
-            findUserByIdAndUpdate: (req) => {
+            updateUser: (req) => {
                 return User.findByIdAndUpdate(req.params.userId, {
                     name: req.body.name,
                     photo: req.body.photo,
@@ -44,7 +44,7 @@ module.exports = ({
             },
 
 
-            findUserByIdAndDelete: (req) => {
+            deleteUserById: (req) => {
                 return User.findByIdAndRemove(req.params.userId)
             }
         }
