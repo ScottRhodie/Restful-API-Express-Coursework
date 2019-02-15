@@ -12,6 +12,10 @@ As such, I've mapped out the following which I think would be a good way to go f
 
 2.  Have the person logging in / creating their app to have their information sent to the database, where their own information is stored etc.
 
-3.  Create a few multiple users and information, and then have this information, including the newly registered persons information/data showing on the app, and have the feed displaying information pulled from the database.
+3.  Create a few multiple users and information, and then have this information, including the newly registered persons information/data showing on the app, and have the feed displaying information pulled from the database. This should allow for multiple people to register for accounts.
 
 4.  Work on having it interactive. Comments, likes etc.
+
+5.  Work on a feature allowing people to post additional pictures, other than the one they initially signed up with.
+
+6.  Work on user profiles & pages.
