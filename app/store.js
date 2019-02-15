@@ -18,6 +18,14 @@ module.exports = ({
                     })
             },
 
+            registerUser: (user) => {
+                return User.create(user)
+                    .then((response) => {
+                        console.log("A new user has been created.");
+                        return response;
+                    })
+            },
+
 
             getAllUsers: () => {
                 return User.find()

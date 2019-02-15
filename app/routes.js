@@ -1,4 +1,5 @@
 const express = require("express");
+const User = require('./model');
 
 module.exports = controller => {
     const createApp = () => {
@@ -25,20 +26,6 @@ module.exports = controller => {
                 .catch(err => {
                     res.status(500).send({
                         message: err.message || "Unable to rerieve users"
-                    });
-                });
-        });
-
-
-        app.post("/api/v1/users/", (req, res) => {
-            return controller
-                .createUser(req.body)
-                .then(data => {
-                    res.send(data);
-                })
-                .catch(err => {
-                    res.status(err.errorCode || 500).send({
-                        message: err.message || "Some error occurred while creating the user."
                     });
                 });
         });
@@ -105,6 +92,52 @@ module.exports = controller => {
                     }
                 })
         })
+
+
+
+        app.post("/api/v1/users/", (req, res) => {
+            return controller
+                .createUser(req.body)
+                .then(data => {
+                    res.send(data);
+                })
+                .catch(err => {
+                    res.status(err.errorCode || 500).send({
+                        message: err.message || "Some error occurred while creating the user."
+                    });
+                });
+        });
+
+
+
+        app.post("/api/v1/register", (req, res) => {
+            User.findOne({
+                email: req.body.email
+            }).then(user => {
+                if (user) {
+                    return res.status(400).json({
+                        email: "email already exists"
+                    });
+                } else {
+                    return controller
+                        .createUser(req.body)
+                        .then(data => {
+                            res.send(data);
+                        })
+                        .catch(err => {
+                            res.status(err.errorCode || 500).send({
+                                message: err.message || "Some error occurred while creating the user."
+                            });
+                        });
+                }
+            })
+        });
+
+
+
+
+
+
 
 
         const port = process.env.PORT || 5000;

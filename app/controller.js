@@ -5,6 +5,11 @@ module.exports = store => {
   };
 
 
+  const registerUser = user => {
+    return store.saveUser(user);
+  };
+
+
   const getAllUsers = Users => {
     return store.getAllUsers(Users)
   }
@@ -28,6 +33,7 @@ module.exports = store => {
     createUser,
     getAllUsers,
     findUser,
+    registerUser,
     updateUser,
     deleteUserById
   };
