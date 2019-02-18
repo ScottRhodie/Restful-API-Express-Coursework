@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
 const User = require('./model');
+const bcryptjs = require("bcryptjs");
 
 module.exports = ({
     url
 }) => {
+
+    const encryptPassword = (password) => {
+        let encryptedPassword = '';
+        let salt = bcryptjs.genSaltSync(10);
+        encryptedPassword = bcryptjs.hashSync(`${password}`, salt);
+        return encryptedPassword;
+    }
+
+
     return mongoose.connect(url, {
         useNewUrlParser: true,
         useFindAndModify: false
@@ -19,7 +29,10 @@ module.exports = ({
             },
 
             registerUser: (user) => {
-                return User.create(user)
+                let userWithHash = Object.assign({}, user, {
+                    password: encryptPassword(user.password)
+                });
+                return User.create(userWithHash)
                     .then((response) => {
                         console.log("A new user has been created.");
                         return response;

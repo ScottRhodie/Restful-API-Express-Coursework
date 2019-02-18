@@ -119,8 +119,9 @@ module.exports = controller => {
                         email: "email already exists"
                     });
                 } else {
+                    let user = req.body;
                     return controller
-                        .registerUser(req.body)
+                        .registerUser(user)
                         .then(data => {
                             res.send(data);
                         })
@@ -132,11 +133,6 @@ module.exports = controller => {
                 }
             })
         });
-
-
-
-
-
 
 
 
