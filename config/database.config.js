@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost:27017/instagram'
+    url: 'mongodb://instagram:password212!@ds151513.mlab.com:51513/instagram'
 }
