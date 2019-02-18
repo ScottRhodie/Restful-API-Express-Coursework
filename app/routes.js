@@ -120,7 +120,7 @@ module.exports = controller => {
                     });
                 } else {
                     return controller
-                        .createUser(req.body)
+                        .registerUser(req.body)
                         .then(data => {
                             res.send(data);
                         })

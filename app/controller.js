@@ -6,7 +6,7 @@ module.exports = store => {
 
 
   const registerUser = user => {
-    return store.saveUser(user);
+    return store.registerUser(user);
   };
 
 
